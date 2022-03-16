@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea
+.~lock.Summary_Enhancements_Bugs.docx#
+Summary_Enhancements_Bugs.docx
