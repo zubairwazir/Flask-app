@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    <div class="container theme-showcase col-sm-6 col-sm-offset-3" role="main">
+
+      <div class="row"> 
+        <div>
+          <form method="POST" action="/index">
+		  <p>
+
+        <div class="jumbotron">
+
+        
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Enter PlayerID:</label>
+            <input type="text" name="openid" class="form-control" id="opendid_input" aria-describedby="emailHelp" value="{{ openid }}">
+            <span class="error">{{ message }}</span>
+          </div>
+          
+          <br>
+          <div class="mb-3">
+            <label class="form-label">Select Region:</label>
+            <select name="region" class="form-control form-control-lg" aria-label="Default select example" id="region">
+              <option selected>Select Region</option>
+              <option value="EU">EU</option>
+              <option value="JP">JP</option>
+              <option value="ASIA">ASIA</option>
+              <option value="ME">ME</option>
+              <option value="MOS">MOS</option>
+            </select>
+          </div>
+         <!--  <label class="form-label">Select Region:</label> <br> -->
+          
+          <hr>
+          <br>
+   
+            <button type="submit"  class="btn btn-primary btn-lg">DELETE</button> 
+      
+            <button type="reset" class="btn btn-primary btn-lg">CLEAR</button>
+
+          <!-- <script src="../static/javascript/script.js"></script> -->
+          
+        </form>
+          
+          
+
+          {% for mess in get_flashed_messages() %}
+  
+          <div class="alert alert-success alert-dismissible show text-center" role="alert">
+            {{mess}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            
+          
+             {% endfor %}
+
+            </div>
+        </div>
+ 
+        </div>
+      </div>
+
+    </div>
+
+
+{% if keyvalid %}
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-3">
+            Are you sure?
+          </div>
+      </div>
+      <div class="modal-footer">
+
+        <div class="row">
+          <div class="col-md-3 col-md-offset-3">
+            <button type="button" class="btn btn-primary" id="yesbutton">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          </div>
+  
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+  $('#myModal').modal({show:true})
+  $('#yesbutton').click(function(){
+    window.location = '/deleteopenid/' + '{{ region }}/' + '{{ appid }}/' + '{{ openid }}' 
+  })
+</script>
+
+{% endif %}
+
+  </div>
+
+</html>
+
+
+
+
+{% endblock %}
+
+
+

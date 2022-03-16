@@ -1,0 +1,44 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  display: block;
+  width: auto;
+  text-align: center;
+  float: none;
+}
+
+.navbar-header {
+  display:flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  text-align: center;
+}
+
+.nav{
+  align-items: flex-end;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  display: block;
+  padding-top: 50px;
+  color: green;
+}

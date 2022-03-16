@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>AOV PlayerID Resetter</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet"
+		href="{{url_for('static',filename='fonts/material-design-iconic-font/css/material-design-iconic-font.min.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/style_2.css')}}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="inner-2">
+			<form action="/register_user" method="POST" id="form1">
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+					<p>{{ message }}
+					<p>
+						{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
+				<h3>Register</h3>
+				<div class="form-wrapper">
+					<label for="username">Username</label>
+					<input name="username" id="username" type="text" class="form-control" placeholder="Johndoe"
+						required>
+				</div>
+				<div class="form-wrapper">
+					<label for="email">Email</label>
+					<input name="email" id="email" type="text" class="form-control" placeholder="example@example.com"
+						required>
+				</div>
+				<div class="form-wrapper">
+					<label for="password">Password</label>
+					<input name="password" id="password" type="password" class="form-control" required>
+				</div>
+				<div class="form-wrapper">
+					<label for="confirmPassword">Confirm Password</label>
+					<input name="confirmPassword" id="confirmPassword" type="password" class="form-control" required>
+				</div>
+				<span id='message'></span>
+				<button type="submit">Sign up</button>
+				<a id="oneToggle">Already have an account? Login now</a>
+			</form>
+		</div>
+		<div class="inner">
+			<form action="/login" method="POST" id="form2">
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+					<p class="flash_message">{{ message }}
+					<p>
+						{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
+				<h3>Player ID Resetter</h3>
+				<h3>Login</h3>
+				<div class="form-wrapper">
+					<label for="username">Username</label>
+					<input name="username" id="username" type="text" class="form-control">
+				</div>
+				<div class="form-wrapper">
+					<label for="password">Password</label>
+					<input name="password" id="password" type="password" class="form-control">
+				</div>
+				<button type="submit" name="signin" value="signin">Sign in</button>
+				<a id="uploadToggle">Don't have an account? Register now</a>
+			</form>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function () {
+			$('#password, #confirmPassword').on('keyup', function () {
+				if ($('#password').val() == $('#confirmPassword').val()) {
+					if ($('#password').val().length > 7) {
+						$('#message').html('Passwords match!').css('color', 'green');
+					} else {
+						$('#message').html('Password length must at least be 8 characters').css('color', 'red');
+						$("#registerSubmit").attr("disabled", "disabled");
+					}
+
+				} else
+					$('#message').html('Passwords do not match').css('color', 'red');
+			});
+			$("#oneToggle").click(function () {
+				$(".inner-2").hide();
+				$(".inner").show();
+			});
+			$("#uploadToggle").click(function () {
+				$(".inner").hide();
+				$(".inner-2").show();
+			});
+		});
+	</script>
+</body>
+
+</html>
